@@ -50,3 +50,7 @@ fi
 for i in *.cfg; do
   install $i
 done
+
+for i in klicky; do
+  install $i
+done
