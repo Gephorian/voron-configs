@@ -56,3 +56,13 @@ done
 for i in klicky; do
   install $i
 done
+
+#############
+## PLUGINS ##
+#############
+
+## Autoz
+if [ ! -e ~/klipper/klippy/extras/z_calibration.py ]; then
+  [ ! -d ~/repos/klipper_z_calibration ] && git clone --depth 1 https://github.com/protoloft/klipper_z_calibration ~/repos/klipper_z_calibration
+  ~/repos/klipper_z_calibration/install.sh
+fi
