@@ -1,5 +1,7 @@
 #!/bin/bash
 
+INSTALLDIR=~/printer_data/config
+
 while getopts ":d" opt; do
   case "$opt" in
     d) DEBUG=true;;
@@ -32,11 +34,11 @@ install(){
   READLINK=readlink
   if [ -f ${FILE} ]; then
     info "Installing $FILE"
-    ln -sf $($READLINK -f $FILE) ~/$2 || error "Couldn't copy the file: $FILE!"
+    ln -sf $($READLINK -f $FILE) ${INSTALLDIR}/$2 || error "Couldn't copy the file: $FILE!"
   elif [ -d ${FILE} ]; then
     info "Removing original and installing $FILE"
-    [ -d ~/$FILE ] && rm -rf ~/$FILE
-    ln -sf $($READLINK -f $FILE) ~/$2 || error "Couldn't copy the directory: $FILE!"
+    [ -d ${INSTALLDIR}/$FILE ] && rm -rf ${INSTALLDIR}/$FILE
+    ln -sf $($READLINK -f $FILE) ${INSTALLDIR}/$2 || error "Couldn't copy the directory: $FILE!"
   else
     error "File ${FILE} doesn't exist!"
   fi
